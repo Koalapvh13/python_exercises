@@ -4,7 +4,7 @@ import requests
 def remove_repetidos(lista):
     l = [] 
     for i in lista:
-        if i not in l:
+        if i not in l and len(i)> 3 and i != 'REFRÃO' and i != "100%":
             l.append(i)
     l.sort()
     return l
@@ -29,6 +29,9 @@ def busca_musicas(id_api):
                 limpa_string = limpa_string.replace('{', '') # Retira abre chaves 
                 limpa_string = limpa_string.replace('}', '') # Retira fecha chaves
                 limpa_string = limpa_string.replace('/', '') # Retira barra
+                limpa_string = limpa_string.replace(':', '') # Retira DOIS PONTOS
+                limpa_string = limpa_string.replace(';', '') # Retira PONTO E VIRGULA
+
                 limpa_string = limpa_string.replace('"', '') # Retira aspas duplas
                 lista = remove_repetidos(limpa_string.split())
                 for d in lista:
